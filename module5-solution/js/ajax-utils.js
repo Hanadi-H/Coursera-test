@@ -6,10 +6,10 @@ var ajaxUtils = {};
 
 // Returns an HTTP request object
 function getRequestObject() {
-  if (window.XMLHttpRequest) {
+  if (global.XMLHttpRequest) {
     return (new XMLHttpRequest());
   } 
-  else if (window.ActiveXObject) {
+  else if (global.ActiveXObject) {
     // For very old IE browsers (optional)
     return (new ActiveXObject("Microsoft.XMLHTTP"));
   } 
@@ -23,6 +23,7 @@ function getRequestObject() {
 // Makes an Ajax GET request to 'requestUrl'
 ajaxUtils.sendGetRequest = 
   function(requestUrl, responseHandler, isJsonResponse) {
+
     var request = getRequestObject();
     request.onreadystatechange = 
       function() { 
